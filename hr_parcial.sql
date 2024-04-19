@@ -196,7 +196,56 @@ INSERT INTO JOBS (JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY) VALUES ('PU_MAN', '
 INSERT INTO JOBS (JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY) VALUES ('SA_MAN', 'Sales Manager', 10000, 20000);
 
 
+----------------------------------------------------------------------
+---------------         CREACION DE USUARIOS        ------------------
+----------------------------------------------------------------------
 
+-- Crear usuario para el departamento de recursos humanos
+CREATE USER C##hr_manager IDENTIFIED BY hr_manager_password;
+GRANT CREATE SESSION TO C##hr_manager;
+
+-- Crear usuario para el personal de reclutamiento
+CREATE USER C##recruiter IDENTIFIED BY recruiter_password;
+GRANT CREATE SESSION TO C##recruiter;
+
+-- Crear usuario para el personal de n mina
+CREATE USER C##payroll_admin IDENTIFIED BY payroll_admin_password;
+GRANT CREATE SESSION TO C##payroll_admin;
+
+-- Crear usuario para el personal de capacitaci n
+CREATE USER C##training_officer IDENTIFIED BY training_officer_password;
+GRANT CREATE SESSION TO C##training_officer;
+
+-- Crear usuario para el personal de desarrollo organizacional
+CREATE USER C##od_specialist IDENTIFIED BY od_specialist_password;
+GRANT CREATE SESSION TO C##od_specialist;
+
+
+--Falta la creacion de roles y la asignacion de privilegios a esos roles
+
+
+----------------------------------------------------------------------
+--------------       ASIGNACION DE PRIVILEGIOS       -----------------
+----------------------------------------------------------------------
+
+-- Crear usuario para el departamento de recursos humanos
+GRANT SELECT, INSERT, UPDATE, DELETE ON employees TO hr_manager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON departments TO hr_manager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON locations TO hr_manager;
+
+-- Crear usuario para el personal de reclutamiento
+GRANT SELECT ON employees TO recruiter;
+
+-- Crear usuario para el personal de n mina
+GRANT SELECT, UPDATE ON employees TO payroll_admin;
+
+-- Crear usuario para el personal de capacitaci n
+GRANT SELECT, INSERT, UPDATE, DELETE ON employees TO training_officer;
+
+-- Crear usuario para el personal de desarrollo organizacional
+GRANT SELECT ON employees TO od_specialist;
+GRANT SELECT ON departments TO od_specialist;
+GRANT SELECT ON locations TO od_specialist;
 
 
 
